@@ -20,7 +20,7 @@ const mySchema = new mongoose.Schema({
     username: { type: String, required: true },
     picture: { type: String, required: false },
     content: { type: String, required: false },
-    comment: { type: Array, required: false }, 
+    comments: { type: Array, required: false }, 
 })
 
 const MyModel = mongoose.model("post", mySchema);
@@ -51,17 +51,12 @@ app.get("/post", async (req, res) => {
     try{
         const posts = await MyModel.find();
         res.render("post.ejs", { posts });
-        // console.log(posts);
+        console.log(posts);
     }
     catch(error){
         res.json(error);
     }
 });
-
-app.get("/post", async (req, res) => {
-    const posts = await MyModel.find();
-    res.render("post.ejs", { posts });
-})
 
 app.post("/", (req, res) => {
     try{

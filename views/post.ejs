@@ -23,6 +23,11 @@
                         <div class="userAction">
                             <p>Reply</p>
                             <p>Comments</p>
+                            <% for(comment of post.comments){ %>
+                                <p><%= comment.username %></p>
+                                <p><%= comment.picture %></p>
+                                <p><%= comment.content %></p>
+                                <% } %>
                             <p>Share</p>
                         </div>
                     </div>
