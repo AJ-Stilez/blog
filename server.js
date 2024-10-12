@@ -19,7 +19,7 @@ mongoose.connect(uri)
 
 const mySchema = new mongoose.Schema({
     username: { type: String, required: true },
-    email: { type: String, required, true },
+    email: { type: String, required: true },
     picture: { type: String, required: false },
     content: { type: String, required: false },
     comments: { type: Array, required: false }, 
