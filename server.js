@@ -17,7 +17,8 @@ mongoose.connect(uri)
 
 const mySchema = new mongoose.Schema({
     username: { type: String, required: true },
-    content: { type: String, required: false }
+    picture: { type: String, required: false },
+    content: { type: String, required: false },
 })
 
 const MyModel = mongoose.model("post", mySchema);

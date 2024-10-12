@@ -30,5 +30,16 @@
              <h3>BEYOND DREAM'S</h3>
 
     </div>
+
+    <% if(locals.posts){ %> 
+        <% for(post of posts){ %> 
+            <div>
+                <p><%= post.username %></p>
+                <p><%= post.picture %></p>
+                <p><%= post.content %></p>
+            </div>
+        <% } %> 
+    <% } %> 
+
 </body>
 </html>
