@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser"
 import mongoose from "mongoose";
 import session from "express-session"
-import bycrypt from "bcryptjs";
+import bcrypt from "bcryptjs";
 
 dotenv.config();
 
@@ -20,6 +20,7 @@ mongoose.connect(uri)
 const mySchema = new mongoose.Schema({
     username: { type: String, required: true },
     email: { type: String, required: true },
+    password: {type: String, required: true },
     picture: { type: String, required: false },
     content: { type: String, required: false },
     comments: { type: Array, required: false }, 
@@ -72,14 +73,34 @@ app.get("/signUp", async (req, res) => {
 
 app.post("/register", async (req, res) => {
     try{
-        const {username, email, password} = req.body;
-        const checkUsername = await MyModel.findOne({ 
-           $or: [
-              { username: username },
-              { email: email },
-           ]  
-        });
-        const checkEmail = await MyModel.findOne({  });
+        const {username, email, password, confirmPass} = req.body;
+        const checkUsername = await MyModel.findOne({ username: username });
+        const checkEmail = await MyModel.findOne({ email: email });
+        console.log(checkUsername);
+        console.log(checkEmail);
+        if(checkUsername){
+            res.render("signUp.ejs", {error: "Username has been used"});
+        }
+        else if(checkEmail){
+            res.render("signUp.ejs", {error: "Email has been used"});
+        }
+        else if(password.length < 6){
+            res.render("signUp.ejs", {error: "Password cannot be less than 6"});
+        }
+        else if(password != confirmPass){
+            res.render("signUp.ejs", {error: "Your password needs to match in the two fields"});
+        }
+        else{
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(password, saltRounds);
+            const newUser = await MyModel.create({
+                username: username,
+                email: email,
+                password: hashedPassword,
+            })
+            console.log(newUser);
+            res.render("signIn.ejs");
+        }
     }
     catch(err){
         res.json(error);
