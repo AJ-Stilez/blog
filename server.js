@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser"
 import mongoose from "mongoose";
+import session from "express-session"
 
 dotenv.config();
 
@@ -26,17 +27,30 @@ const MyModel = mongoose.model("post", mySchema);
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extendedd: true }));
 app.use(express.static("public"));
+app.use(session({
+    secret: process.env.MY_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        secure: true,
+        maxAge: 10 * 1,
+    }
+}))
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
     try{
-        const posts = await MyModel.find();
-        res.render("index.ejs", { posts });
+        res.render("index.ejs");
         // console.log(posts);
     }
     catch(error){
-        res.json(error);
+        res.send(error);
     }
 });
+
+app.get("/post", async (req, res) => {
+    const posts = await MyModel.find();
+    res.render("post.ejs", { posts });
+})
 
 app.post("/", (req, res) => {
     try{
