@@ -18,3 +18,14 @@ r.root{
     display: flex;
     gap: 40px;
 }
+
+.mainCommentDiv{
+    border: 2px solid blue;
+    color: black;
+}
+
+.userCommentsProfile{
+    display: flex;
+    gap: 20px;
+   
+}

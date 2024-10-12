@@ -20,16 +20,17 @@
                     
                         <p><%= post.content %></p>
 
-                        <div class="userAction">
+                        <div class="userAction" id="userAction">
                             <p>Reply</p>
-                            <p>Comments</p>
-                            <% for(comment of post.comments){ %>
-                                <p><%= comment.username %></p>
-                                <p><%= comment.picture %></p>
-                                <p><%= comment.content %></p>
-                                <% } %>
+                            <p onclick="commentsDisplay()" id="comments">Comments</p>
+                           
                             <p>Share</p>
+
+                          
                         </div>
+                        <div id="commentVisible">
+
+                        </div>  
                     </div>
             <% } %> 
         <% } %> 
