@@ -20,6 +20,7 @@ const mySchema = new mongoose.Schema({
     username: { type: String, required: true },
     picture: { type: String, required: false },
     content: { type: String, required: false },
+    comment: { type: Array, required: false }, 
 })
 
 const MyModel = mongoose.model("post", mySchema);
