@@ -47,6 +47,7 @@ app.get("/", (req, res) => {
         res.send(error);
     }
 });
+
 app.get("/post", async (req, res) => {
     try{
         const posts = await MyModel.find();
@@ -58,9 +59,9 @@ app.get("/post", async (req, res) => {
     }
 });
 
-app.post("/", (req, res) => {
+app.post("/login", (req, res) => {
     try{
-
+        
     }
     catch(err){
         res.json(error);
