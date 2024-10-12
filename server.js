@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
+import bodyParser from "body-parser"
 import mongoose from "mongoose";
-import { Db } from "mongodb";
 
 dotenv.config();
 
@@ -23,14 +23,14 @@ const mySchema = new mongoose.Schema({
 const MyModel = mongoose.model("post", mySchema);
 
 app.use(express.json());
-app.use(bodyParser.urlenconded({ extendedd: true }));
+app.use(bodyParser.urlencoded({ extendedd: true }));
 app.use(express.static("public"));
 
 app.get("/", async (req, res) => {
     try{
         const posts = await MyModel.find();
         res.render("index.ejs", { posts });
-        console.log(posts);
+        // console.log(posts);
     }
     catch(error){
         res.json(error);

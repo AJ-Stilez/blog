@@ -1,6 +1,6 @@
 
 body{
-    background: url(./asset/bg.avif);
+    background: url(/asset/bg.avif);
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgba(86, 55, 199, 0.5);
