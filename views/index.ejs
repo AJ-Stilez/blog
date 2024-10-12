@@ -28,19 +28,11 @@
 
     <div class="heroSection">
              <h3>BEYOND DREAM'S</h3>
-             <button>EXPLORE</button>
+             <button><a href="post"> EXPLORE </a></button>
 
     </div>
 
-    <% if(locals.posts){ %> 
-        <% for(post of posts){ %> 
-            <div>
-                <p><%= post.username %></p>
-                <p><%= post.picture %></p>
-                <p><%= post.content %></p>
-            </div>
-        <% } %> 
-    <% } %> 
+
 
 </body>
 </html>

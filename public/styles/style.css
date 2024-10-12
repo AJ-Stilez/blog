@@ -7,6 +7,12 @@ body{
     background-blend-mode: overlay;
 }
 
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 22px;
+}
+
 h1{
     color: white;
     font-size: 30px;

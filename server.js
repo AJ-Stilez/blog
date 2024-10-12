@@ -47,6 +47,16 @@ app.get("/", (req, res) => {
         res.send(error);
     }
 });
+app.get("/post", async (req, res) => {
+    try{
+        const posts = await MyModel.find();
+        res.render("post.ejs", { posts });
+        // console.log(posts);
+    }
+    catch(error){
+        res.json(error);
+    }
+});
 
 app.get("/post", async (req, res) => {
     const posts = await MyModel.find();
