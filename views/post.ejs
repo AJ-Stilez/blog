@@ -5,11 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="/scripts/post.js" defer></script>
+    <link rel="stylesheet" href="/styles/post.css">
 </head>
 <body>
     <div class="root">
 
+        <% if(locals.posts){ %> 
+            <% for(post of posts){ %> 
+                <div class="post">
+                    <div class="userDetails">
+                        <p><%= post.picture %></p>
+                        <p><%= post.username %></p>       
+                    </div>
+                    
+                        <p><%= post.content %></p>
 
+                        <div class="userAction">
+                            <p>Reply</p>
+                            <p>Comments</p>
+                            <p>Share</p>
+                        </div>
+                    </div>
+            <% } %> 
+        <% } %> 
 
     </div>
 
